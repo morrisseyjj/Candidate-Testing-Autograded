@@ -28,12 +28,11 @@ let correctAnswer1 = ("Sally Ride");
 let correctAnswer2 = ("true");
 let correctAnswer3 = ("40");
 let correctAnswer4 = ("Trajectory");
-let correctAnswer5 = ("3");
-// Put Questions and Answers into the Arrays "questions", "correctAnswer" and "candidateAnswer"
+let correctAnswer5 = ("3"); // try ("3" || "three")
+// Put Questions and Answers into the Arrays "questions", "correctAnswer" and create "candidateAnswer" array
 questions = [question1, question2, question3, question4, question5];
-//console.log(questions);
 correctAnswers = [correctAnswer1, correctAnswer2, correctAnswer3, correctAnswer4, correctAnswer5]
-//console.log(correctAnswers);
+candidateAnswers =  [];
 
 
 function askForName() {
@@ -45,27 +44,46 @@ function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
   // USE a FOR LOOP
   for (let i = 0; i < questions.length; i++){
-    candidateAnswer = input.question(questions[i]);
-    console.log(`Your Answer: ${candidateAnswer} \nCorrect Answer: ${correctAnswers[i]}\n`);
+    candidateAnswers.push(userAnswer = input.question(questions[i]));
+    console.log(`Your Answer: ${userAnswer} \nCorrect Answer: ${correctAnswers[i]}\n`);
   }
 }
 
 function gradeQuiz(candidateAnswers) {
+//// Initiate variables for "grade" expression
+  let numberOfQuizQuestions = questions.length;
+  let numberOfCorrectAnswers = 0;
+  let status = "";
+//// Change all to lower case
+  let lowerCaseCandidateAnswers = [];
+  let lowerCaseCorrectAnswers = [];
+//// Change CANDIDATE Answers to Lower Case
+  for (let i = 0; i < candidateAnswers.length; i++) {
+    lowerCaseCandidateAnswers.push(candidateAnswers[i].toLowerCase());
+  }
+//// Change CORRECT Answers to Lower Case
+  for (let i = 0; i < candidateAnswers.length; i++) {
+    lowerCaseCorrectAnswers.push(correctAnswers[i].toLowerCase());
+  }
+//------------------------------------
+// Checks Candidate's answers with the Correct answers 1 by 1 and for each correct answer adds 1 to numberOfCorrectAnswers
+  for (let i = 0; i < candidateAnswers.length; i++){
+    if (lowerCaseCandidateAnswers[i] === lowerCaseCorrectAnswers[i] ){
+      numberOfCorrectAnswers += 1;
+    }
+  }
+   //TODO 3.2 use this variable to calculate the candidates score.
+  let grade = (numberOfCorrectAnswers) / (numberOfQuizQuestions) * 100;
+    if (grade >= 80){
+      status = "PASSED"
+    } else {
+      status = "FAILED"
+    }
 
-  // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-  //James comment: PART 2 CODE for 1.2c is included in the FOR LOOP in 1.2b
-  //James comment: PART 1 CODE is below
-  // if (candidateAnswer == correctAnswer){
-  //   console.log(`Your Answer: ${candidateAnswer} Your Answer: ${correctAnswer}`);
-  // } else {
-  //     console.log("Sorry, that is incorrect.");
-  // }
-    
-
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
-
+  console.log(`Your grade is a ${grade}%. `);
+  console.log(`You have ${status}.`);
   return grade;
+
 }
 
 function runProgram() {
