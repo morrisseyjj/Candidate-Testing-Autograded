@@ -12,7 +12,7 @@ let correctAnswer = "Sally Ride";
 let candidateAnswer = "";
 
 
-//TODO: Variables for Part 2
+//TODO: Arrays for Part 2
 let questions = [];
 let correctAnswers = [];
 let candidateAnswers = [];
@@ -29,7 +29,8 @@ let correctAnswer2 = ("true");
 let correctAnswer3 = ("40");
 let correctAnswer4 = ("Trajectory");
 let correctAnswer5 = ("3"); // try ("3" || "three")
-// Put Questions and Answers into the Arrays "questions", "correctAnswer" and create "candidateAnswer" array
+// Put Questions and Answers into the Arrays "questions", "correctAnswer" and create "candidateAnswer" array 
+// ADD LET
 questions = [question1, question2, question3, question4, question5];
 correctAnswers = [correctAnswer1, correctAnswer2, correctAnswer3, correctAnswer4, correctAnswer5]
 candidateAnswers =  [];
